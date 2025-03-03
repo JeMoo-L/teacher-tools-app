@@ -1,7 +1,7 @@
 {
   "name": "teacher-tools-app",
   "productName": "teacher-tools-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "My Electron application description",
   "main": ".vite/main/main.js",
   "scripts": {
