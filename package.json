@@ -11,11 +11,12 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "dev": "NODE_ENV=development electron .",
-    "release": "electron-builder build --publish always",
-    "build": "electron-builder build --publish always",
+    "release": "npm run build:all && npm run publish",
+    "build": "npm run build:all",
     "build:win": "cross-env NODE_ENV=production electron-builder --win",
     "build:mac": "cross-env NODE_ENV=production electron-builder --mac",
-    "build:linux": "cross-env NODE_ENV=production electron-builder --linux"
+    "build:linux": "cross-env NODE_ENV=production electron-builder --linux",
+    "build:all": "npm run build:win && npm run build:mac && npm run build:linux"
   },
   "keywords": [],
   "author": "wll",
