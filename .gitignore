@@ -92,3 +92,4 @@ typings/
 out/
 
 electron-builder.env
+secrets.*

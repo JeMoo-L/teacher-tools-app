@@ -10,7 +10,11 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
-    "build": "electron-builder build --publish always"
+    "dev": "NODE_ENV=development electron .",
+    "build": "electron-builder",
+    "build:win": "cross-env NODE_ENV=production electron-builder --win",
+    "build:mac": "cross-env NODE_ENV=production electron-builder --mac",
+    "build:linux": "cross-env NODE_ENV=production electron-builder --linux"
   },
   "keywords": [],
   "author": "wll",
@@ -69,17 +73,17 @@
     "uuid": "^11.1.0"
   },
   "build": {
-    "appId": "com.example.yourapp",
+    "appId": "com.github.JeMoo-L.teacher-tools-app",
     "publish": {
       "provider": "github",
-      "owner": "your-github-username",
-      "repo": "your-repo-name"
+      "owner": "JeMoo-L",
+      "repo": "teacher-tools-app"
+    },
+    "mac": {
+      "category": "public.app-category.utilities"
     },
     "win": {
       "target": "nsis"
-    },
-    "mac": {
-      "target": "dmg"
     },
     "linux": {
       "target": "AppImage"

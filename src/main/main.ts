@@ -14,7 +14,11 @@ class AppUpdater {
     // const locale = new Locale();
 
     // autoUpdater.logger = log;
-    // autoUpdater.setFeedURL('https://chatboxai.app/api/auto_upgrade/open-source');
+    autoUpdater.setFeedURL({
+      provider: 'github',
+      owner: 'JeMoo-L',
+      repo: 'teacher-tools-app',
+    });
     autoUpdater.checkForUpdatesAndNotify();
     autoUpdater.once('update-downloaded', (event) => {
       dialog
