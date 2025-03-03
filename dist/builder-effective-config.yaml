@@ -1,0 +1,28 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.github.JeMoo-L.teacher-tools-app
+publish:
+  provider: github
+  owner: JeMoo-L
+  repo: teacher-tools-app
+mac:
+  category: public.app-category.productivity
+  target:
+    - dmg
+    - zip
+  hardenedRuntime: true
+  gatekeeperAssess: false
+win:
+  target:
+    - nsis
+    - msi
+  certificateFile: cert.pfx
+  certificatePassword: <stripped sensitive data>
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Development
+files: []
+electronVersion: 34.2.0
