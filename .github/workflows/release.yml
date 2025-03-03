@@ -1,32 +1,19 @@
-name: Build and Release Electron App
-
+name: Release
 on:
   push:
     tags:
-      - 'v*' # 只有当推送的标签匹配 v*（例如 v1.0.0）时，才会触发
-
+      - 'v*'
 jobs:
-  build:
-    runs-on: ubuntu-latest # 运行环境
-
+  build-and-publish:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Electron App
+      - run: npm install
+      - name: Publish Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npm run build
-
-      - name: Publish to GitHub Releases
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npm run electron-builder -- --publish=always
+        run: npx electron-builder build --publish always

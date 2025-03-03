@@ -1,7 +1,7 @@
 {
   "name": "teacher-tools-app",
   "productName": "teacher-tools-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My Electron application description",
   "main": ".vite/main/main.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "dev": "NODE_ENV=development electron .",
+    "release": "electron-builder build --publish always",
     "build": "electron-builder",
     "build:win": "cross-env NODE_ENV=production electron-builder --win",
     "build:mac": "cross-env NODE_ENV=production electron-builder --mac",
@@ -80,13 +81,28 @@
       "repo": "teacher-tools-app"
     },
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
     },
     "win": {
-      "target": "nsis"
+      "target": [
+        "nsis",
+        "msi"
+      ],
+      "certificateFile": "cert.pfx",
+      "certificatePassword": ""
     },
     "linux": {
-      "target": "AppImage"
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Development"
     }
   }
 }
