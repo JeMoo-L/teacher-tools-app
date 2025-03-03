@@ -1,7 +1,7 @@
 {
   "name": "teacher-tools-app",
   "productName": "teacher-tools-app",
-  "version": "1.0.5",
+  "version": "1.0.3",
   "description": "My Electron application description",
   "main": ".vite/main/main.js",
   "scripts": {
@@ -11,12 +11,12 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "dev": "NODE_ENV=development electron .",
-    "release": "npm run build:all && npm run publish",
-    "build": "npm run build:all",
+    "release": "electron-builder build -mwl --publish always",
+    "build": "electron-builder build --publish always",
+    "build:all": "electron-builder build -mwl",
     "build:win": "cross-env NODE_ENV=production electron-builder --win",
     "build:mac": "cross-env NODE_ENV=production electron-builder --mac",
-    "build:linux": "cross-env NODE_ENV=production electron-builder --linux",
-    "build:all": "npm run build:win && npm run build:mac && npm run build:linux"
+    "build:linux": "cross-env NODE_ENV=production electron-builder --linux"
   },
   "keywords": [],
   "author": "wll",
