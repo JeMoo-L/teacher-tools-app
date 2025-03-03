@@ -25,4 +25,4 @@ linux:
     - deb
   category: Development
 files: []
-electronVersion: 34.2.0
+electronVersion: 34.3.0

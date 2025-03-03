@@ -44,11 +44,12 @@ const createWindow = () => {
     width: 1300,
     height: 800,
     webPreferences: {
-      preload: path.join(__dirname, '/preload/preload.js'), // 确保路径正确
+      preload: path.join(__dirname, '../preload/preload.js'), // 确保路径正确
       nodeIntegration: false,
     },
   });
 
+  console.log('NODE_ENV==>', process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:5173');
   } else {
