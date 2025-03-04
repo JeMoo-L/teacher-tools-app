@@ -19,9 +19,6 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
 
-      - name: Debug NPM_TOKEN
-        run: echo "NPM_TOKEN is set to: ${{ secrets.NPM_TOKEN }}"
-
       - name: Manually Write .npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
         env:
@@ -32,7 +29,6 @@ jobs:
 
       - name: Force HTTPS for Git Dependencies
         run: git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
-
 
       - name: Set GitHub Authentication
         run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
