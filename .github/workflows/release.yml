@@ -25,5 +25,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN2 }}
         run: npm run release
 
-      - name: Set up npm
+      - name: Set up npm authentication
         run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
