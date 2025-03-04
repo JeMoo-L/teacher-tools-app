@@ -23,6 +23,7 @@ jobs:
       - name: Build and Publish
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run release
 env:
   ELECTRON_MIRROR: 'https://npmmirror.com/mirrors/electron/'
