@@ -28,7 +28,7 @@ jobs:
         run: cat ~/.npmrc
 
       - name: Force HTTPS for Git Dependencies
-        run: git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+        run: git config --global url."git+https://github.com/".insteadOf "git+ssh://git@github.com/"
 
       - name: Set GitHub Authentication
         run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
