@@ -22,7 +22,7 @@ jobs:
 
       - name: Build and Publish
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN2 }}
         run: npm run release
 
       - name: Set up npm
