@@ -18,15 +18,12 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
 
-      - name: Clean npmrc
-        run: rm -f .npmrc
-
       - name: Configure npm authentication
-        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Setup Git authentication
+      - name: Setup Git authentication (for git dependencies)
         run: git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
 
       - name: Install Dependencies
@@ -36,5 +33,5 @@ jobs:
 
       - name: Build and Publish
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN2 }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run release
