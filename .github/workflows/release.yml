@@ -19,22 +19,25 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
 
-      - name: Logout npm (clear old tokens)
-        run: npm logout || true
+      - name: Debug NPM_TOKEN
+        run: echo "NPM_TOKEN is set to: ${{ secrets.NPM_TOKEN }}"
 
-      - name: Clean npm cache
-        run: npm cache clean --force
-
-      - name: Configure npm authentication
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" | tee ~/.npmrc
+      - name: Manually Write .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Debug .npmrc
+      - name: Check .npmrc
         run: cat ~/.npmrc
 
-      - name: Setup Git authentication (for git dependencies)
+      - name: Force HTTPS for Git Dependencies
         run: git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+
+
+      - name: Set GitHub Authentication
+        run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Install Dependencies
         run: npm ci
